@@ -51,7 +51,6 @@ const sendMemeGif = senderID => {
         "https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1"
     )
         .then(res => res.json())
-        .then(data => console.log(data))
         .then(data => sendMemeMessage(senderID, data.data.image_url));
 };
 
