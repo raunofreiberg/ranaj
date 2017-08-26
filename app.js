@@ -107,7 +107,7 @@ function sendMemeMessage(recipientId) {
             attachment: {
                 type: "image",
                 payload: {
-                    url: memeToBeSent;
+                    url: memeToBeSent
                 }
             }
         }
