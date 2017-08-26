@@ -91,13 +91,16 @@ function sendTextMessage(recipientId, messageText) {
 }
 
 function sendMemeMessage(recipientId) {
-    const memes = [
-        'http://i.imgur.com/pA5G7DU.jpg',
-        'http://i.imgur.com/N9puck0.png',
-        'http://i.imgur.com/e40YXcs.jpg',
-    ];
 
-    let memeToBeSent = memes[Math.floor(Math.random()*memes.length)];
+    let memeToBeSent;
+
+    const getMemeGif = () => {
+    fetch('https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1')
+        .then(res => res.json())
+        .then(data => memeToBeSent = data.data.image_url)
+    };
+
+    getMemeGif();
 
     let messageData = {
         recipient: {
