@@ -79,9 +79,6 @@ function receivedMessage(event) {
             case 'meme':
                 sendMemeGif(senderID);
                 break;
-            case 'another one':
-                sendTextMessage(senderID, 'https://media.giphy.com/media/l0HlQ7LRalQqdWfao/giphy.gif');
-                break;
             case 'thetime':
                 sendTextMessage(senderID, timeOfMessage);
                 break;
