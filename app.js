@@ -45,6 +45,14 @@ app.post('/webhook', function (req, res) {
     }
 });
 
+const sendMemeGif = (senderID) => {
+  fetch(
+    "https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1"
+  )
+    .then(res => res.json())
+    .then(data => sendMemeMessage(senderID, data.data.image_url));
+};
+
 function receivedMessage(event) {
     let senderID = event.sender.id;
     let recipientID = event.recipient.id;
@@ -66,7 +74,7 @@ function receivedMessage(event) {
         // and send back the example. Otherwise, just echo the text we received.
         switch (messageText) {
             case 'meme':
-                sendMemeMessage(senderID);
+                sendMemeGif(senderID);
                 break;
 
             default:
@@ -91,16 +99,6 @@ function sendTextMessage(recipientId, messageText) {
 }
 
 function sendMemeMessage(recipientId) {
-
-    let memeToBeSent;
-
-    const getMemeGif = () => {
-    fetch('https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1')
-        .then(res => res.json())
-        .then(data => memeToBeSent = data.data.image_url)
-    };
-
-    getMemeGif();
 
     let messageData = {
         recipient: {
