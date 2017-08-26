@@ -45,6 +45,14 @@ app.post('/webhook', function (req, res) {
     }
 });
 
+function sendMemeGif(senderID) {
+  fetch(
+    "https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1"
+  )
+    .then(res => res.json())
+    .then(data => sendMemeMessage(senderID, data.data.image_url));
+}
+
 function receivedMessage(event) {
     let senderID = event.sender.id;
     let recipientID = event.recipient.id;
@@ -66,7 +74,7 @@ function receivedMessage(event) {
         // and send back the example. Otherwise, just echo the text we received.
         switch (messageText) {
             case 'meme':
-                sendMemeMessage(senderID);
+                sendMemeGif(senderID);
                 break;
 
             default:
@@ -90,7 +98,7 @@ function sendTextMessage(recipientId, messageText) {
     callSendAPI(messageData);
 }
 
-function sendMemeMessage(recipientId) {
+function sendMemeMessage(recipientId, memeUrl) {
 
     let messageData = {
         recipient: {
@@ -100,7 +108,7 @@ function sendMemeMessage(recipientId) {
             attachment: {
                 type: "image",
                 payload: {
-                    url: 'http://i.imgur.com/pA5G7DU.jpg'
+                    url: memeUrl
                 }
             }
         }
@@ -132,14 +140,3 @@ function callSendAPI(messageData) {
         }
     });
 }
-
-/*
-const sendMemeGif = (senderID) => {
-  fetch(
-    "https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1"
-  )
-    .then(res => res.json())
-    .then(data => sendMemeMessage(senderID, data.data.image_url));
-};
- */
-
