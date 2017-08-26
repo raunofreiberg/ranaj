@@ -98,7 +98,7 @@ function sendTextMessage(recipientId, messageText) {
     callSendAPI(messageData);
 }
 
-function sendMemeMessage(recipientId) {
+function sendMemeMessage(recipientId, memeUrl) {
 
     let messageData = {
         recipient: {
@@ -108,7 +108,7 @@ function sendMemeMessage(recipientId) {
             attachment: {
                 type: "image",
                 payload: {
-                    url: memeToBeSent
+                    url: memeUrl
                 }
             }
         }
