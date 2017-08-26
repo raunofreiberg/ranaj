@@ -16,8 +16,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="205" lean-forward="false" selection-start-line="35" selection-start-column="205" selection-end-line="35" selection-end-column="205" />
+            <state relative-caret-position="922">
+              <caret line="92" column="6" lean-forward="false" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -73,8 +73,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2678" />
-    <option name="y" value="45" />
+    <option name="x" value="863" />
+    <option name="y" value="23" />
     <option name="width" value="1621" />
     <option name="height" value="1371" />
   </component>
@@ -139,7 +139,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2678" y="45" width="1621" height="1371" extended-state="0" />
+    <frame x="863" y="23" width="1621" height="1371" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -217,8 +217,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="205" lean-forward="false" selection-start-line="35" selection-start-column="205" selection-end-line="35" selection-end-column="205" />
+        <state relative-caret-position="922">
+          <caret line="92" column="6" lean-forward="false" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
           <folding />
         </state>
       </provider>
