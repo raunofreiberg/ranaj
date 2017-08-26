@@ -11,7 +11,7 @@ app.get('/hello', function (req, res) {
 });
 
 app.get('/webhook', function (req, res) {
-	if (req.query['hub.verify_token'] === 'poop') {
+	if (req.query['hub.verify_token'] === 'beniz') {
 		res.send(req.query['hub.challenge']);
         console.log('done');
 	}
