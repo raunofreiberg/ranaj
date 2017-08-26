@@ -92,7 +92,7 @@ function sendTextMessage(recipientId, messageText) {
 
 function sendMemeMessage(recipientId) {
     const memes = [
-        'http://i.imgur.com/reW77sh.gifv',
+        'http://i.imgur.com/pA5G7DU.jpg',
         'http://i.imgur.com/N9puck0.png',
         'http://i.imgur.com/e40YXcs.jpg',
     ];
