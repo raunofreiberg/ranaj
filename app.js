@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
@@ -77,6 +79,12 @@ function receivedMessage(event) {
             case 'meme':
                 sendMemeGif(senderID);
                 break;
+            case 'another one':
+                sendTextMessage(senderID, 'https://media.giphy.com/media/l0HlQ7LRalQqdWfao/giphy.gif');
+                break;
+            case 'thetime':
+                sendTextMessage(senderID, timeOfMessage);
+                break;
 
             default:
                 sendTextMessage(senderID, messageText);
@@ -100,7 +108,6 @@ function sendTextMessage(recipientId, messageText) {
 }
 
 function sendMemeMessage(recipientId, memeUrl) {
-
     let messageData = {
         recipient: {
             id: recipientId
@@ -123,7 +130,7 @@ const token = 'EAAD2EIPvxu0BAPYULJz85kD8ZC0faU2u3DqI4Q2v0hm3gw4eSk19LsLeIZAutVcM
 function callSendAPI(messageData) {
     request({
         uri: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: token},
+        qs: { access_token: token },
         method: 'POST',
         json: messageData
 
