@@ -59,7 +59,7 @@ const sendMemeGif = senderID => {
 function receivedMessage(event) {
     let senderID = event.sender.id;
     let recipientID = event.recipient.id;
-    let timeOfMessage = event.timestamp;
+    let timeOfMessage = new Date(event.timestamp);
     let message = event.message;
 
     console.log("Received message for user %d and page %d at %d with message:",
