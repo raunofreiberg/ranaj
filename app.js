@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-const app = express();
 const fetch = require('node-fetch');
+const app = express();
 
 app.use(bodyParser.json());
 
@@ -46,13 +46,14 @@ app.post('/webhook', function (req, res) {
     }
 });
 
-function sendMemeGif(senderID) {
-  fetch(
-    "https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1"
-  )
-    .then(res => res.json())
-    .then(data => sendMemeMessage(senderID, data.data.image_url));
-}
+const sendMemeGif = senderID => {
+    fetch(
+        "https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1"
+    )
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .then(data => sendMemeMessage(senderID, data.data.image_url));
+};
 
 function receivedMessage(event) {
     let senderID = event.sender.id;
