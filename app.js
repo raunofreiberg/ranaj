@@ -6,6 +6,11 @@ const request = require('request');
 const fetch = require('node-fetch');
 const app = express();
 
+// utils
+// const doShit = require('./utils/Test').doShit;
+
+// doShit();
+
 app.use(bodyParser.json());
 
 app.listen(process.env.PORT);
@@ -22,39 +27,6 @@ app.get('/webhook', function (req, res) {
     res.send('Error, wrong token');
     console.log('fuck');
 });
-
-app.post('/webhook', function (req, res) {
-    let data = req.body;
-
-    // Make sure this is a page subscription
-    if (data.object === 'page') {
-
-        // Iterate over each entry - there may be multiple if batched
-        data.entry.forEach(function (entry) {
-            let pageID = entry.id;
-            let timeOfEvent = entry.time;
-
-            // Iterate over each messaging event
-            entry.messaging.forEach(function (event) {
-                if (event.message) {
-                    receivedMessage(event);
-                } else {
-                    console.log("Webhook received unknown event: ", event);
-                }
-            });
-        });
-
-        res.sendStatus(200);
-    }
-});
-
-const sendMemeGif = senderID => {
-    fetch(
-        "https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1"
-    )
-        .then(res => res.json())
-        .then(data => sendMemeMessage(senderID, data.data.image_url));
-};
 
 function receivedMessage(event) {
     let senderID = event.sender.id;
@@ -91,6 +63,37 @@ function receivedMessage(event) {
     }
 }
 
+app.post('/webhook', function (req, res) {
+    let data = req.body;
+
+    // Make sure this is a page subscription
+    if (data.object === 'page') {
+
+        // Iterate over each entry - there may be multiple if batched
+        data.entry.forEach(function (entry) {
+            let pageID = entry.id;
+            let timeOfEvent = entry.time;
+
+            // Iterate over each messaging event
+            entry.messaging.forEach(function (event) {
+                if (event.message) {
+                    receivedMessage(event);
+                } else {
+                    console.log("Webhook received unknown event: ", event);
+                }
+            });
+        });
+
+        res.sendStatus(200);
+    }
+});
+
+const sendMemeGif = senderID => {
+    fetch("https://api.giphy.com/v1/gifs/random?tag=meme&api_key=afb98db1dd844c6c841d9e573ef0ef27&limit=1")
+        .then(res => res.json())
+        .then(data => sendMemeMessage(senderID, data.data.image_url));
+};
+
 function sendTextMessage(recipientId, messageText) {
     let messageData = {
         recipient: {
@@ -122,12 +125,12 @@ function sendMemeMessage(recipientId, memeUrl) {
     callSendAPI(messageData);
 }
 
-const token = 'EAAD2EIPvxu0BAPYULJz85kD8ZC0faU2u3DqI4Q2v0hm3gw4eSk19LsLeIZAutVcMgaGbHknT9ZCZBdpZCpk5ZALHjCd8uWvXhObKdfMWhjifDdRlGQg7dObKXkYGKPme32ufTwhdKTk1Fw5b7VM0yE13JNWZBZBCRnnvBZAF7ZBkT5YNMvdYRZAY4wO';
+const token = 'EAAD2EIPvxu0BAAmtqBhs7e8ZAQSB4v730eR1V0a8mmdvPFYWpNIW9vFUhK1pxaFQBxIwgrkMFSU471uqJo8i5f1p6bV0fCDYjXxaVIAE4LRH3qV0WBDS0mEsAAOF7wOstJGoc0vuDkMpnbDyiBMPVYyexcxnSHoLnoqFfhv1950rr4Bmb';
 
 function callSendAPI(messageData) {
     request({
         uri: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: { access_token: token },
+        qs: {access_token: token},
         method: 'POST',
         json: messageData
 
